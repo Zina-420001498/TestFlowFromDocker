@@ -22,8 +22,8 @@ jobs:
     container: 
       image: ghcr.io/zina-420001498/gitversion:0.1.0
       credentials:
-         username: <YOUR_USERNAME>
-         password: ${{  secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}
+         username: ${{ github.actor }}
+         password: ${{ secrets.GITHUB_TOKEN }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       -
