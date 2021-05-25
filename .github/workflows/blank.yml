@@ -19,22 +19,25 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    container: ghcr.io/zina-420001498/gitversion:0.1.0
-
+    container: 
+      image: ghcr.io/zina-420001498/gitversion:0.1.0
+      credentials:
+         username: <YOUR_USERNAME>
+         password: ${{  secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       -
-        name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          
+        name: Ru step in Container
+        shell: bash
+        run: |
+          # Whatever commands you want to run here using the container with your
+          # new Docker image at ghcr.io!>
+          echo "--This is running in my custom Docker image--"
+          ls
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      #- uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      #- name: Run a one-line script
         run: ls
 
